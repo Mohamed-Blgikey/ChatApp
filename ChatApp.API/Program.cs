@@ -59,7 +59,7 @@ builder.Services.AddScoped<IAuthServices, AuthServices>();
 
 builder.Services.AddCors();
 
-//builder.Services.AddSignalR();
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -70,7 +70,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//app.MapHub<ChatHub>("/Notify");
+app.MapHub<ChatHub>("/Notify");
+
 app.UseCors(a => a.WithOrigins("*", "http://localhost:4200").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
 app.UseAuthentication();
